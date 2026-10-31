@@ -55,7 +55,7 @@
 
 .tab-bar__item[aria-current='page'] {
   background: var(--color-primary-tint);
-  color: var(--color-primary);
+  color: var(--color-on-tint);
   font-weight: 700;
 }
 

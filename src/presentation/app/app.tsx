@@ -17,7 +17,7 @@ export function App() {
 
   return (
     <div className="app">
-      <main className="app__content">
+      <main key={activeTab} className="app__content">
         <Screen />
       </main>
       <TabBar activeTab={activeTab} onChange={setActiveTab} />
