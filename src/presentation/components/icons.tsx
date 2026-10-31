@@ -77,3 +77,35 @@ export function ArrowUpIcon() {
     </svg>
   );
 }
+
+export function ChevronDownIcon() {
+  return (
+    <svg {...ICON_PROPS}>
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  );
+}
+
+export function ImportIcon() {
+  return (
+    <svg {...ICON_PROPS}>
+      <path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 16.5v2a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-2" />
+    </svg>
+  );
+}
+
+export function ExportIcon() {
+  return (
+    <svg {...ICON_PROPS}>
+      <path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M4.5 16.5v2a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-2" />
+    </svg>
+  );
+}
+
+export function TrashIcon() {
+  return (
+    <svg {...ICON_PROPS}>
+      <path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v5M14 11v5" />
+    </svg>
+  );
+}

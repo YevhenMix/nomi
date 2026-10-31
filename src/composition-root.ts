@@ -1,4 +1,5 @@
 import { createAppServices, type AppServices } from './application/app-services';
+import { jsonBackupSerializer } from './infrastructure/backup/json-backup-serializer';
 import { AppDatabase } from './infrastructure/db/database';
 import { DexieCalculationRepository } from './infrastructure/db/dexie-calculation-repository';
 import { DexieSettingsRepository } from './infrastructure/db/dexie-settings-repository';
@@ -12,5 +13,6 @@ export function createServices(): AppServices {
     calculationRepository: new DexieCalculationRepository(db),
     clock: systemClock,
     idGenerator: randomIdGenerator,
+    backupSerializer: jsonBackupSerializer,
   });
 }

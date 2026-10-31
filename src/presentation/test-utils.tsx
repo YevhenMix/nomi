@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
 import { createAppServices } from '../application/app-services';
+import { jsonBackupSerializer } from '../infrastructure/backup/json-backup-serializer';
 import { AppDatabase } from '../infrastructure/db/database';
 import { DexieCalculationRepository } from '../infrastructure/db/dexie-calculation-repository';
 import { DexieSettingsRepository } from '../infrastructure/db/dexie-settings-repository';
@@ -17,6 +18,7 @@ export function renderWithServices(ui: ReactNode) {
     calculationRepository: new DexieCalculationRepository(db),
     clock: systemClock,
     idGenerator: randomIdGenerator,
+    backupSerializer: jsonBackupSerializer,
   });
   const view = render(
     // StrictMode, as in main.tsx: it runs effects twice in development.

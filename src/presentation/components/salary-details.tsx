@@ -32,10 +32,12 @@ function DetailsRow({ step, label, formula, amount, emphasised }: DetailsRowProp
 
 interface SalaryDetailsProps {
   breakdown: SalaryBreakdown;
+  /** Renders the groups without their own cards, for use inside another card. */
+  flat?: boolean;
 }
 
 /** Renders the lines of a breakdown as they are. All the numbers come from the calculator. */
-export function SalaryDetails({ breakdown }: SalaryDetailsProps) {
+export function SalaryDetails({ breakdown, flat }: SalaryDetailsProps) {
   const { t, i18n } = useTranslation();
   const locale = i18n.language;
   const { rates } = breakdown;
@@ -55,11 +57,11 @@ export function SalaryDetails({ breakdown }: SalaryDetailsProps) {
 
   return (
     <>
-      <Card title="Brutto">
+      <Card flat={flat} title="Brutto">
         <DetailsRow step="1" label="Brutto" formula={inputs} amount={money(breakdown.brutto)} />
       </Card>
 
-      <Card title={t('details.sections.zus')}>
+      <Card flat={flat} title={t('details.sections.zus')}>
         <DetailsRow
           step="2"
           label="Emerytalna"
@@ -86,7 +88,7 @@ export function SalaryDetails({ breakdown }: SalaryDetailsProps) {
         />
       </Card>
 
-      <Card title={t('details.sections.health')}>
+      <Card flat={flat} title={t('details.sections.health')}>
         <DetailsRow
           step="5"
           label={t(`${line}.healthBase.label`)}
@@ -101,7 +103,7 @@ export function SalaryDetails({ breakdown }: SalaryDetailsProps) {
         />
       </Card>
 
-      <Card title={t('details.sections.pit')}>
+      <Card flat={flat} title={t('details.sections.pit')}>
         <DetailsRow
           step="7"
           label="KUP"
@@ -134,7 +136,7 @@ export function SalaryDetails({ breakdown }: SalaryDetailsProps) {
         />
       </Card>
 
-      <Card title="Netto">
+      <Card flat={flat} title="Netto">
         <DetailsRow
           step="12"
           label={t(`${line}.nettoWithoutPit2.label`)}

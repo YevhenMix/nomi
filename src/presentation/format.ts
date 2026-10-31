@@ -29,3 +29,17 @@ export function formatScaled(
     useGrouping: false,
   }).format(value / 10 ** decimals);
 }
+
+/** "31 жовтня 2026", without the "р." / "г." some locales add after the year. */
+export function formatDate(iso: string, locale: string): string {
+  const parts = new Intl.DateTimeFormat(locale, {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).formatToParts(new Date(iso));
+  const yearIndex = parts.findIndex((part) => part.type === 'year');
+  return parts
+    .slice(0, yearIndex + 1)
+    .map((part) => part.value)
+    .join('');
+}

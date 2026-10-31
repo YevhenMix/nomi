@@ -18,6 +18,14 @@ export class DexieSettingsRepository implements SettingsRepository {
     return parseStoredSettings(await this.db.settings.get(SETTINGS_KEY));
   }
 
+  saveIfMissing(settings: Settings): Promise<boolean> {
+    return this.db.transaction('rw', this.db.settings, async () => {
+      if (await this.db.settings.get(SETTINGS_KEY)) return false;
+      await this.db.settings.put({ ...settings, key: SETTINGS_KEY });
+      return true;
+    });
+  }
+
   update(change: (current: Settings) => Settings): Promise<Settings> {
     return this.db.transaction('rw', this.db.settings, async () => {
       const current = parseStoredSettings(await this.db.settings.get(SETTINGS_KEY));

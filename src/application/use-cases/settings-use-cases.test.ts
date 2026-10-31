@@ -12,6 +12,10 @@ class InMemorySettingsRepository implements SettingsRepository {
     return this.stored;
   }
 
+  async saveIfMissing() {
+    return false;
+  }
+
   async update(change: (current: Settings) => Settings) {
     this.stored = change(this.stored);
     return this.stored;

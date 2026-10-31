@@ -18,6 +18,16 @@ export interface TaxRates {
   pit2Relief: Grosze;
 }
 
+export const TAX_RATE_NAMES = [
+  'emerytalna',
+  'rentowa',
+  'chorobowa',
+  'zdrowotna',
+  'kup',
+  'pit',
+  'pit2Relief',
+] as const satisfies readonly (keyof TaxRates)[];
+
 export const DEFAULT_TAX_RATES: TaxRates = {
   emerytalna: 976,
   rentowa: 150,

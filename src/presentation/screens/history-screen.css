@@ -1,0 +1,29 @@
+.history-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.history-list {
+  margin: 16px 0 0;
+  padding: 0;
+}
+
+.history-empty {
+  margin-top: 40px;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.history-empty__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.history-empty__hint {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}

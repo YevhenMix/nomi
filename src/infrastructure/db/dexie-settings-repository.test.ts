@@ -47,6 +47,16 @@ describe('DexieSettingsRepository', () => {
     });
   });
 
+  it('saveIfMissing stores settings only when none were saved', async () => {
+    const restored = { ...DEFAULT_SETTINGS, hourlyRate: 5000 };
+
+    expect(await repository.saveIfMissing(restored)).toBe(true);
+    expect((await repository.load()).hourlyRate).toBe(5000);
+
+    expect(await repository.saveIfMissing({ ...DEFAULT_SETTINGS, hourlyRate: 1 })).toBe(false);
+    expect((await repository.load()).hourlyRate).toBe(5000);
+  });
+
   it('saves nothing when the change throws', async () => {
     await repository.update((current) => ({ ...current, hourlyRate: 5000 }));
 

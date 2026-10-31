@@ -5,7 +5,7 @@ import type { Clock } from '../ports/clock';
 import type { IdGenerator } from '../ports/id-generator';
 
 interface SaveCalculationPorts {
-  calculationRepository: CalculationRepository;
+  calculationRepository: Pick<CalculationRepository, 'add'>;
   clock: Clock;
   idGenerator: IdGenerator;
 }
