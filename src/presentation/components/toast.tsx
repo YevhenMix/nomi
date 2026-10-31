@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import './toast.css';
 
 const TOAST_DURATION_MS = 2500;
@@ -14,9 +15,11 @@ export function Toast({ message, onDismiss }: ToastProps) {
     return () => window.clearTimeout(timer);
   }, [onDismiss]);
 
-  return (
+  // On <body>, because the moving screen track would otherwise carry it along.
+  return createPortal(
     <div className="toast" role="status">
       {message}
-    </div>
+    </div>,
+    document.body,
   );
 }

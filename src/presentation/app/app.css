@@ -4,43 +4,42 @@
   height: 100%;
   max-width: 480px;
   margin: 0 auto;
-  overflow: hidden; /* Keeps a screen sliding in from adding a sideways scrollbar. */
 }
 
 .app__content {
   flex: 1;
   min-height: 0;
+  /* clip, not hidden: nothing, not even focusing an input, may scroll the track sideways. */
+  overflow: clip;
+}
+
+.pager {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+
+.pager__page {
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
   overflow-y: auto;
   padding: calc(24px + env(safe-area-inset-top)) 16px 24px;
-  /* Sideways gestures are ours (tab swipes); scrolling and pinch zoom stay with the browser. */
+  /* Sideways gestures move the track; scrolling and pinch zoom stay with the browser. */
   touch-action: pan-y pinch-zoom;
 }
 
-@keyframes tab-enter-from-right {
-  from {
-    opacity: 0;
-    transform: translateX(32px);
-  }
-}
-
-@keyframes tab-enter-from-left {
-  from {
-    opacity: 0;
-    transform: translateX(-32px);
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  .app__content {
+  .pager {
+    transition: transform 280ms cubic-bezier(0.22, 0.8, 0.3, 1);
+  }
+
+  .pager[data-dragging] {
+    transition: none;
+  }
+
+  .pager__page {
     scroll-behavior: smooth;
-  }
-
-  .app__content[data-entered-from='right'] {
-    animation: tab-enter-from-right 180ms ease-out;
-  }
-
-  .app__content[data-entered-from='left'] {
-    animation: tab-enter-from-left 180ms ease-out;
   }
 }
 
