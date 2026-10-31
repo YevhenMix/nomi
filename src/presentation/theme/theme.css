@@ -90,6 +90,7 @@ body,
 
 body {
   margin: 0;
+  overscroll-behavior-x: none;
   background: var(--color-background);
   color: var(--color-text);
   -webkit-tap-highlight-color: transparent;

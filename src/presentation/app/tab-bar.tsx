@@ -1,16 +1,13 @@
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CalculatorIcon, HistoryIcon, SlidersIcon } from '../components/icons';
-
-export type TabId = 'calculate' | 'history' | 'settings';
+import { TAB_IDS, type TabId } from './tabs';
 
 const TAB_ICONS: Record<TabId, ReactNode> = {
   calculate: <CalculatorIcon />,
   history: <HistoryIcon />,
   settings: <SlidersIcon />,
 };
-
-const TAB_IDS: TabId[] = ['calculate', 'history', 'settings'];
 
 interface TabBarProps {
   activeTab: TabId;

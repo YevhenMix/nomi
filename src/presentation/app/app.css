@@ -4,6 +4,7 @@
   height: 100%;
   max-width: 480px;
   margin: 0 auto;
+  overflow: hidden; /* Keeps a screen sliding in from adding a sideways scrollbar. */
 }
 
 .app__content {
@@ -11,11 +12,35 @@
   min-height: 0;
   overflow-y: auto;
   padding: calc(24px + env(safe-area-inset-top)) 16px 24px;
+  /* Sideways gestures are ours (tab swipes); scrolling and pinch zoom stay with the browser. */
+  touch-action: pan-y pinch-zoom;
+}
+
+@keyframes tab-enter-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+}
+
+@keyframes tab-enter-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .app__content {
     scroll-behavior: smooth;
+  }
+
+  .app__content[data-entered-from='right'] {
+    animation: tab-enter-from-right 180ms ease-out;
+  }
+
+  .app__content[data-entered-from='left'] {
+    animation: tab-enter-from-left 180ms ease-out;
   }
 }
 
