@@ -1,5 +1,8 @@
-name: Deploy to GitHub Pages
+name: Test, release and deploy
 
+# Each job only runs if the one before it succeeded: test → release → deploy.
+# Only a new release is deployed, so the live site is always a released version.
+# Running this workflow by hand deploys the current commit even without a new release.
 on:
   push:
     branches: [main]
@@ -7,15 +10,14 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
+# Queued rather than cancelled, so a newer push can't interrupt a release halfway.
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: release-and-deploy
+  cancel-in-progress: false
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -24,15 +26,51 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run test
-      - run: npm run build
+      - run: npm run lint
+      - name: Unit tests
+        run: npm run test:unit
+      - name: Integration tests
+        run: npm run test:integration
+      - name: Type-check and build
+        run: npm run build
+      # Built here, so the site that goes live is exactly what was tested.
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
-  deploy:
-    needs: build
+  release:
+    needs: test
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # semantic-release reads all commits and tags to work out the next version.
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Release from conventional commits
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Find the release of this commit
+        id: version
+        run: echo "tag=$(git tag --points-at HEAD --list 'v*' | head -n 1)" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: release
+    if: needs.release.outputs.tag != '' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
