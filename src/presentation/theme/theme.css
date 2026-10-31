@@ -1,0 +1,85 @@
+/* Light is the base. Dark applies when the system prefers it and the user has not chosen
+   a theme, or when [data-theme='dark'] is set explicitly. */
+:root {
+  color-scheme: light;
+  --color-background: #f2f5f1;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f2f4f1;
+  --color-border: #e2e7e2;
+  --color-primary: #2f6b4f;
+  --color-on-primary: #ffffff;
+  --color-primary-tint: #e3ede5;
+  --color-text: #18201b;
+  --color-muted: #6b756e;
+  --color-warning-bg: #f6e9d7;
+  --color-warning-text: #8a5a1f;
+
+  --radius-card: 24px;
+  --radius-control: 16px;
+  --touch-target: 44px;
+  --tab-bar-height: 72px;
+
+  font-family: 'Inter Variable', system-ui, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --color-background: #101613;
+    --color-surface: #18201c;
+    --color-surface-muted: #101613;
+    --color-border: #2a332e;
+    --color-primary: #7fc4a0;
+    --color-on-primary: #101613;
+    --color-primary-tint: #26332c;
+    --color-text: #f2f5f1;
+    --color-muted: #9aa59e;
+    --color-warning-bg: #3a2e1d;
+    --color-warning-text: #e8c595;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-background: #101613;
+  --color-surface: #18201c;
+  --color-surface-muted: #101613;
+  --color-border: #2a332e;
+  --color-primary: #7fc4a0;
+  --color-on-primary: #101613;
+  --color-primary-tint: #26332c;
+  --color-text: #f2f5f1;
+  --color-muted: #9aa59e;
+  --color-warning-bg: #3a2e1d;
+  --color-warning-text: #e8c595;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

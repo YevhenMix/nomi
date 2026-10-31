@@ -1,0 +1,78 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+dev-dist/
+*.tsbuildinfo
+
+# Tooling caches
+.vite/
+.eslintcache
+.prettiercache
+.cache/
+
+# Test output
+coverage/
+playwright-report/
+test-results/
+
+# Logs
+logs/
+*.log
+
+# Environment files (keep only the template)
+.env
+.env.*
+!.env.example
+*.local
+
+# Secrets, tokens and keys
+*.pem
+*.key
+*.crt
+*.cer
+*.der
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.gpg
+*.asc
+.npmrc
+.netrc
+id_rsa*
+id_ed25519*
+secrets.*
+secrets/
+credentials.*
+credentials/
+*credentials*.json
+*service-account*.json
+*token*.json
+
+# Personal salary data exported from the app
+moya-zarplata-*.json
+
+# Claude Code
+CLAUDE.md
+CLAUDE.local.md
+.claude/settings.local.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python env (not used by the app)
+.venv/
+__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db
+
+
+playground
