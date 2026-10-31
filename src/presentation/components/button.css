@@ -1,0 +1,35 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.button--primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.button--secondary {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-primary);
+}

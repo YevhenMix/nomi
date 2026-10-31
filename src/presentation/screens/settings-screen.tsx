@@ -2,7 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { MONEY_DECIMALS } from '../../domain/money';
 import { PERCENT_DECIMALS } from '../../domain/rates';
 import type { Language } from '../../domain/settings';
+import { Button } from '../components/button';
 import { Card } from '../components/card';
+import { MoonIcon, SunIcon } from '../components/icons';
 import { NumberField } from '../components/number-field';
 import { SegmentedControl, type SegmentedOption } from '../components/segmented-control';
 import { useServices } from '../hooks/use-services';
@@ -17,29 +19,6 @@ const LANGUAGE_OPTIONS: readonly SegmentedOption<Language>[] = [
   { value: 'ru', label: 'RU' },
 ];
 
-const ICON_PROPS = {
-  viewBox: '0 0 24 24',
-  fill: 'none',
-  stroke: 'currentColor',
-  strokeWidth: 1.8,
-  strokeLinecap: 'round',
-  strokeLinejoin: 'round',
-  'aria-hidden': true,
-} as const;
-
-const SUN_ICON = (
-  <svg {...ICON_PROPS}>
-    <circle cx="12" cy="12" r="4" />
-    <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" />
-  </svg>
-);
-
-const MOON_ICON = (
-  <svg {...ICON_PROPS}>
-    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" />
-  </svg>
-);
-
 type PercentRate = 'emerytalna' | 'rentowa' | 'chorobowa' | 'zdrowotna' | 'kup' | 'pit';
 
 export function SettingsScreen() {
@@ -49,8 +28,8 @@ export function SettingsScreen() {
   const systemTheme = useSystemTheme();
 
   const themeOptions: readonly SegmentedOption<ResolvedTheme>[] = [
-    { value: 'light', label: t('settings.themeLight'), icon: SUN_ICON },
-    { value: 'dark', label: t('settings.themeDark'), icon: MOON_ICON },
+    { value: 'light', label: t('settings.themeLight'), icon: <SunIcon /> },
+    { value: 'dark', label: t('settings.themeDark'), icon: <MoonIcon /> },
   ];
 
   const renderPercentField = (name: PercentRate) => (
@@ -122,9 +101,9 @@ export function SettingsScreen() {
           />
         </Card>
 
-        <button type="button" className="settings__reset" onClick={handleReset}>
+        <Button className="settings__reset" onClick={handleReset}>
           {t('settings.reset')}
-        </button>
+        </Button>
       </div>
     </>
   );

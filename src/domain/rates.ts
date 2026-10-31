@@ -4,6 +4,8 @@ import type { Grosze } from './money';
 export type BasisPoints = number;
 
 export const PERCENT_DECIMALS = 2;
+/** 100% in basis points. */
+export const BASIS_POINTS_PER_WHOLE = 10_000;
 
 /** All parameters of the salary formula. */
 export interface TaxRates {

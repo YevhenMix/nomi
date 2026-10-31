@@ -5,20 +5,23 @@ import { SettingsScreen } from '../screens/settings-screen';
 import './app.css';
 import { TabBar, type TabId } from './tab-bar';
 
-const SCREENS: Record<TabId, () => React.JSX.Element> = {
-  calculate: CalculateScreen,
-  history: HistoryScreen,
-  settings: SettingsScreen,
-};
-
 export function App() {
   const [activeTab, setActiveTab] = useState<TabId>('calculate');
-  const Screen = SCREENS[activeTab];
+  // Lives here so the hours survive a trip to Settings to change the rate.
+  const [hoursText, setHoursText] = useState('');
 
   return (
     <div className="app">
       <main key={activeTab} className="app__content">
-        <Screen />
+        {activeTab === 'calculate' && (
+          <CalculateScreen
+            hoursText={hoursText}
+            onHoursTextChange={setHoursText}
+            onChangeRate={() => setActiveTab('settings')}
+          />
+        )}
+        {activeTab === 'history' && <HistoryScreen />}
+        {activeTab === 'settings' && <SettingsScreen />}
       </main>
       <TabBar activeTab={activeTab} onChange={setActiveTab} />
     </div>

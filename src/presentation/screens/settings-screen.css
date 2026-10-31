@@ -3,16 +3,6 @@
 }
 
 .settings__reset {
-  display: block;
   width: 100%;
-  min-height: 52px;
   margin-top: 16px;
-  padding: 12px 16px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
-  color: var(--color-primary);
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
 }

@@ -1,0 +1,260 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.app-header__icon {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: var(--color-primary-tint);
+  border-radius: 16px;
+  color: var(--color-on-tint);
+}
+
+.app-header__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.app-header__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.app-header__title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.app-header__subtitle {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.chip {
+  flex: none;
+  padding: 4px 10px;
+  background: var(--color-primary-tint);
+  border-radius: 10px;
+  color: var(--color-on-tint);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.chip--result {
+  background: var(--color-chip);
+  border-radius: 999px;
+}
+
+.hours-card,
+.result-card {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: var(--radius-card);
+}
+
+.hours-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.hours-card__title {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.hours-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.hours-input:focus-within {
+  border-color: var(--color-primary);
+}
+
+.hours-input[data-invalid] {
+  border-color: var(--color-danger);
+}
+
+.hours-input__label {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 15px;
+  color: var(--color-muted);
+}
+
+.hours-input__field {
+  flex: 0 1 auto;
+  field-sizing: content;
+  min-width: var(--touch-target);
+  max-width: 70%; /* Long values scroll inside past this. */
+  min-height: 60px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 28px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.hours-input__field::placeholder {
+  color: var(--color-muted);
+  opacity: 0.6;
+}
+
+.hours-input__unit {
+  flex: none;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.hours-card__error {
+  margin: 8px 0 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-danger);
+}
+
+.rate-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin-top: 12px;
+}
+
+.rate-row__label {
+  flex: 1 1 auto;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.rate-row__value {
+  font-size: 15px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.rate-row__change {
+  min-height: var(--touch-target);
+  margin: -8px -4px -8px auto;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  color: var(--color-on-tint);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.result-card {
+  background: var(--color-primary-tint);
+  border: 1px solid var(--color-tint-border);
+}
+
+.result-card__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.result-card__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-on-tint);
+}
+
+.result-card__amount {
+  margin: 14px 0 0;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.result-card__currency {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.result-card__note {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.result-card__lines {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-tint-border);
+}
+
+.result-card__lines dt {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.result-card__lines dd {
+  margin: 4px 0 0;
+  font-size: 17px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.calculate-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.calculate-details {
+  margin-top: 16px;
+  /* Keeps the button that toggles the block visible when it scrolls into view. */
+  scroll-margin-top: 84px;
+  animation: details-reveal 180ms ease-out;
+}
+
+@keyframes details-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calculate-details {
+    animation: none;
+  }
+}
+
+.calculate-footnote {
+  margin: 16px 0 0;
+  font-size: 12px;
+  text-align: center;
+  color: var(--color-muted);
+}

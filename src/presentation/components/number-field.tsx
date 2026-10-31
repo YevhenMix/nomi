@@ -103,7 +103,7 @@ export function NumberField({
         )}
         {isInvalid && (
           <div id={errorId} className="number-field__error" role="alert">
-            {t('settings.invalidNumber')}
+            {t('validation.invalidNumber')}
           </div>
         )}
       </div>

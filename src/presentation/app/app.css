@@ -13,6 +13,12 @@
   padding: calc(24px + env(safe-area-inset-top)) 16px 24px;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .app__content {
+    scroll-behavior: smooth;
+  }
+}
+
 .screen-title {
   margin: 0;
   font-size: 32px;
@@ -59,7 +65,7 @@
   font-weight: 700;
 }
 
-.tab-bar__icon {
+.tab-bar__item svg {
   width: 22px;
   height: 22px;
 }

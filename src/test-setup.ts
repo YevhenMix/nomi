@@ -13,6 +13,9 @@ window.matchMedia = (query: string) =>
     removeEventListener: () => undefined,
   }) as unknown as MediaQueryList;
 
+// jsdom has no layout, so nothing to scroll.
+Element.prototype.scrollIntoView = () => undefined;
+
 afterEach(async () => {
   cleanup();
   await i18n.changeLanguage('uk');
